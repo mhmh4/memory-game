@@ -13,9 +13,11 @@ function App() {
 
   return (
     <>
-      {cards.map((card, index) => {
-        return <div key={index}>{card}</div>;
-      })}
+      <div className="grid grid-cols-5">
+        {cards.map((card, index) => {
+          return <div key={index}>{card}</div>;
+        })}
+      </div>
     </>
   );
 }
