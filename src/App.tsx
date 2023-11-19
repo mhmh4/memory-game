@@ -5,7 +5,7 @@ const N = 5;
 
 function App() {
   const [cards, setCards] = useState<string[]>([]);
-  const [selections, setSelections] = useState<number[]>([]);
+  const [isSelected, setIsSelected] = useState<boolean[]>([]);
 
   useEffect(() => {
     const newCards = [];
@@ -15,12 +15,15 @@ function App() {
     for (let i = N; i > 0; i--) {
       newCards.push(String(i));
     }
+    setIsSelected(new Array(N).fill(false));
     setCards(newCards);
   }, []);
 
   function handleClick(index: number) {
-    setSelections((curSelections) => {
-      return [...curSelections, index];
+    setIsSelected((curisSelected) => {
+      const newIsSelected = [...curisSelected];
+      newIsSelected[index] = true;
+      return newIsSelected;
     });
   }
 
@@ -33,6 +36,7 @@ function App() {
               <Card
                 key={index}
                 value={card}
+                isSelected={isSelected[index]}
                 onClick={() => handleClick(index)}
               ></Card>
             );
