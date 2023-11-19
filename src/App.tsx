@@ -14,10 +14,12 @@ function App() {
 
   return (
     <>
-      <div className="grid grid-cols-5">
-        {cards.map((card, index) => {
-          return <Card key={index} value={card}></Card>;
-        })}
+      <div className="bg-slate-800 h-screen">
+        <div className="grid grid-cols-5">
+          {cards.map((card, index) => {
+            return <Card key={index} value={card}></Card>;
+          })}
+        </div>
       </div>
     </>
   );
