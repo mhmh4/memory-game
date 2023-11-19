@@ -1,15 +1,18 @@
 interface CardProps {
   value: string;
   onClick: React.MouseEventHandler;
+  isSelected: boolean;
 }
 
 const Card = (props: CardProps) => {
   return (
     <div
-      className="w-40 p-7 px-10 border rounded border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 cursor-pointer"
+      className={`w-40 h-20 p-7 px-10 border rounded border-slate-300 bg-white hover:border-red-500 cursor-pointer ${
+        props.isSelected && "bg-blue-100"
+      }`}
       onClick={props.onClick}
     >
-      {props.value}
+      {props.isSelected && props.value}
     </div>
   );
 };
