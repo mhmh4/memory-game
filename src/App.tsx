@@ -20,6 +20,20 @@ function App() {
     setCards(newCards);
   }, []);
 
+  useEffect(() => {
+    if (numSelections === 2) {
+      const selection1 = cards[isSelected.findIndex((value) => value === true)];
+      const selection2 =
+        cards[isSelected.findLastIndex((value) => value === true)];
+      console.log(selection1, selection2);
+      if (selection1 === selection2) {
+        console.log("match");
+      } else {
+        console.log("no match");
+      }
+    }
+  }, [isSelected]);
+
   function handleClick(index: number) {
     setIsSelected((curisSelected) => {
       const newIsSelected = [...curisSelected];
