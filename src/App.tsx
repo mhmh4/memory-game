@@ -7,6 +7,7 @@ function App() {
   const [cards, setCards] = useState<string[]>([]);
   const [isSelected, setIsSelected] = useState<boolean[]>([]);
   const [numSelections, setNumSelections] = useState(0);
+  const [matched, setMatched] = useState(new Set());
 
   useEffect(() => {
     const newCards = [];
@@ -28,6 +29,12 @@ function App() {
       console.log(selection1, selection2);
       if (selection1 === selection2) {
         console.log("match");
+        setMatched((curMatched) => {
+          const newMatched = new Set(curMatched);
+          console.log(curMatched);
+          newMatched.add(selection1);
+          return newMatched;
+        });
       } else {
         console.log("no match");
       }
