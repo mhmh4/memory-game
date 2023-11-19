@@ -26,8 +26,8 @@ function App() {
 
   return (
     <>
-      <div className="bg-slate-800 h-screen">
-        <div className="grid grid-cols-5">
+      <div className="bg-slate-800 h-screen pt-12">
+        <div className="grid grid-cols-5 w-2/3 mx-auto">
           {cards.map((card, index) => {
             return (
               <Card
