@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
 
+const N = 5;
+
 function App() {
   const [cards, setCards] = useState<string[]>([]);
 
   useEffect(() => {
     const newCards = [];
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= N; i++) {
+      newCards.push(String(i));
+    }
+    for (let i = N; i > 0; i--) {
       newCards.push(String(i));
     }
     setCards(newCards);
