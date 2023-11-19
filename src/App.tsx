@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Card from "./Card";
 
 function App() {
   const [cards, setCards] = useState<string[]>([]);
@@ -15,7 +16,7 @@ function App() {
     <>
       <div className="grid grid-cols-5">
         {cards.map((card, index) => {
-          return <div key={index}>{card}</div>;
+          return <Card key={index} value={card}></Card>;
         })}
       </div>
     </>
