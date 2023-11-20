@@ -1,4 +1,6 @@
+import { shuffle } from "lodash";
 import { useEffect, useState } from "react";
+
 import Card from "./Card";
 
 const N = 5;
@@ -17,7 +19,8 @@ function App() {
     for (let i = N; i > 0; i--) {
       newCards.push(String(i));
     }
-    setCards(newCards);
+    const shuffledCards = shuffle(newCards);
+    setCards(shuffledCards);
   }, []);
 
   useEffect(() => {
