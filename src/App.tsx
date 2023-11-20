@@ -39,6 +39,7 @@ function App() {
       } else {
         console.log("no match");
       }
+      setSelections(new Set());
     }
   }, [selections]);
 
