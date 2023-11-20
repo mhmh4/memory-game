@@ -33,7 +33,8 @@ function App() {
         setMatched((curMatched) => {
           const newMatched = new Set(curMatched);
           console.log(curMatched);
-          newMatched.add(selection1);
+          newMatched.add(index1);
+          newMatched.add(index2);
           return newMatched;
         });
       } else {
@@ -61,6 +62,7 @@ function App() {
                 key={index}
                 value={card}
                 isSelected={selections.has(index)}
+                isMatched={matched.has(index)}
                 onClick={() => handleClick(index)}
               ></Card>
             );
