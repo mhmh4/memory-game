@@ -5,9 +5,9 @@ const N = 5;
 
 function App() {
   const [cards, setCards] = useState<string[]>([]);
-  const [isSelected, setIsSelected] = useState<boolean[]>([]);
-  const [numSelections, setNumSelections] = useState(0);
   const [matched, setMatched] = useState(new Set());
+
+  const [selections, setSelections] = useState<Set<number>>(new Set<number>());
 
   useEffect(() => {
     const newCards = [];
@@ -17,15 +17,16 @@ function App() {
     for (let i = N; i > 0; i--) {
       newCards.push(String(i));
     }
-    setIsSelected(new Array(N).fill(false));
     setCards(newCards);
   }, []);
 
   useEffect(() => {
-    if (numSelections === 2) {
-      const selection1 = cards[isSelected.findIndex((value) => value === true)];
-      const selection2 =
-        cards[isSelected.findLastIndex((value) => value === true)];
+    if (selections.size === 2) {
+      const [index1, index2] = selections;
+
+      const selection1 = cards[index1];
+      const selection2 = cards[index2];
+
       console.log(selection1, selection2);
       if (selection1 === selection2) {
         console.log("match");
@@ -39,16 +40,13 @@ function App() {
         console.log("no match");
       }
     }
-  }, [isSelected]);
+  }, [selections]);
 
   function handleClick(index: number) {
-    setIsSelected((curisSelected) => {
-      const newIsSelected = [...curisSelected];
-      newIsSelected[index] = true;
-      return newIsSelected;
-    });
-    setNumSelections(() => {
-      return numSelections + 1;
+    setSelections((currentSelections) => {
+      const newSelections = new Set(currentSelections);
+      newSelections.add(index);
+      return newSelections;
     });
   }
 
@@ -61,7 +59,7 @@ function App() {
               <Card
                 key={index}
                 value={card}
-                isSelected={isSelected[index]}
+                isSelected={selections.has(index)}
                 onClick={() => handleClick(index)}
               ></Card>
             );
