@@ -24,27 +24,30 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (selections.size === 2) {
-      const [index1, index2] = selections;
+    (async () => {
+      if (selections.size === 2) {
+        const [index1, index2] = selections;
 
-      const selection1 = cards[index1];
-      const selection2 = cards[index2];
+        const selection1 = cards[index1];
+        const selection2 = cards[index2];
 
-      console.log(selection1, selection2);
-      if (selection1 === selection2) {
-        console.log("match");
-        setMatched((curMatched) => {
-          const newMatched = new Set(curMatched);
-          console.log(curMatched);
-          newMatched.add(index1);
-          newMatched.add(index2);
-          return newMatched;
-        });
-      } else {
-        console.log("no match");
+        console.log(selection1, selection2);
+        if (selection1 === selection2) {
+          console.log("match");
+          setMatched((curMatched) => {
+            const newMatched = new Set(curMatched);
+            console.log(curMatched);
+            newMatched.add(index1);
+            newMatched.add(index2);
+            return newMatched;
+          });
+        } else {
+          console.log("no match");
+          await new Promise((resolve) => setTimeout(resolve, 700));
+        }
+        setSelections(new Set());
       }
-      setSelections(new Set());
-    }
+    })();
   }, [selections]);
 
   function handleClick(index: number) {
